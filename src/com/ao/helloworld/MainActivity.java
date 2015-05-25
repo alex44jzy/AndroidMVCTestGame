@@ -12,6 +12,7 @@ public class MainActivity extends Activity {
     private Button mTrueButton;
     private Button mFalseButton;//添加成员变量
     private Button mNextButton;
+    private Button mPrevButton;
     private Button mCheatButton;
     private TextView mQuestionTextView;
     private TrueFalse[] mQuestionBank = new TrueFalse[]{
@@ -84,9 +85,21 @@ public class MainActivity extends Activity {
 				mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;//求余数反复
 				mIsCheater = false;
 				updateQuestion();
+				//int question = mQuestionBank[mCurrentIndex].getQuestion();
+				//mQuestionTextView.setText(question)
 			}
 		});
-		
+		mPrevButton = (Button)findViewById(R.id.prev_button);
+		mPrevButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				mCurrentIndex = (mCurrentIndex + mQuestionBank.length - 1) % mQuestionBank.length;
+				mIsCheater = false;
+				updateQuestion();
+				
+			}
+		});
 		mCheatButton = (Button)findViewById(R.id.cheat_button);
 		mCheatButton.setOnClickListener(new View.OnClickListener() {
 		//启动CheatActivity
